@@ -1,0 +1,34 @@
+version: '3'
+services:
+  rflinkgateway:
+    container_name: RFLinkGateway
+    image: magpern/rflinkgateway:latest
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ~/rflinkgateway433/log:/log
+      - ./config.json:/config/config.json:ro
+    environment:
+      - RFLINK_CONF_FILE=/config/config.json
+      - RFLINK_LOG_LEVEL=INFO
+      - RFLINK_FILE_LOG_LEVEL=INFO
+      - RFLINK_STREAM_LOG_LEVEL=INFO
+      - RFLINK_LOG_FILE=/log/RFLinkGateway.log
+    devices:
+      - /dev/ttyACM0:/dev/ttyACM0
+    links:
+      - mosquitto:mqtt
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ~/mosquitto/config:/mosquitto/config
+      - ~/mosquitto/data:/mosquitto/data
+      - ~/mosquitto/log:/mosquitto/log
+    ports:
+      - 1883:1883
+      - 9001:9001
+
