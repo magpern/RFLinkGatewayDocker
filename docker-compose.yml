@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ~/rflinkgateway433/log:/log
+      - ./log:/log
       - ./config.json:/config/config.json:ro
     environment:
       - RFLINK_CONF_FILE=/config/config.json

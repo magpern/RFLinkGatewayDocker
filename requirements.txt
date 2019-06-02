@@ -1,4 +1,4 @@
 # RFLinkGateway dependancies
-tornado==5.0.2
+tornado==6.0.2
 paho-mqtt==1.4.0
 pyserial==3.4

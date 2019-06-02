@@ -1,10 +1,10 @@
 FROM python:3.7-alpine
 
-LABEL maintainer="Magnus Pernemark <magnus.pernemark@gmail.com>"
+LABEL maintainer="Magnus Pernemark <magnus.pernemark at google's mail service dot com>"
 
 WORKDIR /usr/src/app
 RUN apk add --no-cache git && \
-    git clone https://github.com/dmartinpro/RFLinkGateway.git && \
+    git clone https://github.com/magpern/RFLinkGateway.git && \
     apk del git
 
 ENV RFLINK_CONF_FILE="/config/config.json" \
